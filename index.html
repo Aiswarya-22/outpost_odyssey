@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080d1c" />
+  <title>Outpost Odyssey | Junior Astronaut Mission Trainer</title>
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Outpost Odyssey home">
+      <span class="brand-mark">✦</span>
+      <span>OUTPOST <b>ODYSSEY</b></span>
+    </a>
+    <span class="top-tag">JUNIOR ASTRONAUT TRAINER</span>
+  </header>
+
+  <main>
+    <section id="welcomeScreen" class="welcome screen">
+      <div class="hero-copy">
+        <p class="eyebrow">YOUR MISSION STARTS HERE</p>
+        <h1>Build a home<br> beyond <span>Earth.</span></h1>
+        <p class="intro">Lead a crew, manage limited resources and make the decisions that keep your space outpost running.</p>
+        <div class="feature-row">
+          <span>✦ Resource strategy</span><span>✦ Real STEM concepts</span><span>✦ Mission challenges</span>
+        </div>
+      </div>
+      <div class="planet-art" aria-label="Illustration of a space planet">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="planet"></div><div class="moon-dot"></div>
+        <div class="planet-label">EXPLORE<br><b>THE UNKNOWN</b></div>
+      </div>
+      <div class="mission-setup panel">
+        <div>
+          <p class="eyebrow">01 / SELECT DESTINATION</p>
+          <h2>Choose your outpost</h2>
+        </div>
+        <div class="destination-grid">
+          <button class="destination selected" data-destination="Moon" type="button">
+            <span class="destination-icon">☾</span><span><b>Moon</b><small>Short-range lunar mission</small></span><span class="check">✓</span>
+          </button>
+          <button class="destination" data-destination="Mars" type="button">
+            <span class="destination-icon mars-icon">●</span><span><b>Mars</b><small>Long-range planetary mission</small></span><span class="check">✓</span>
+          </button>
+        </div>
+        <div class="setup-bottom">
+          <label for="crewSize">Crew size</label>
+          <select id="crewSize"><option value="2">2 astronauts</option><option value="3" selected>3 astronauts</option><option value="4">4 astronauts</option><option value="5">5 astronauts</option></select>
+          <button id="startMission" class="primary-btn" type="button">START MISSION <span>→</span></button>
+        </div>
+        <p class="tiny-note">Training simulation • Educational model • Not for real mission planning</p>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="game screen hidden">
+      <div class="game-heading">
+        <div><p class="eyebrow">ACTIVE MISSION / <span id="destinationName">MOON</span></p><h1>Outpost command</h1></div>
+        <div class="day-pill"><span class="live-dot"></span> MISSION DAY <b id="dayNumber">01</b></div>
+      </div>
+      <div class="hybrid-scene panel" id="hybridScene">
+        <div class="scene-sky"><span class="scene-star star-a"></span><span class="scene-star star-b"></span><span class="scene-star star-c"></span>
+          <div class="scene-planet" id="scenePlanet"></div>
+          <div class="scene-orbit"></div>
+          <div class="scene-horizon"></div>
+          <div class="scene-base"><span class="habitat habitat-a"></span><span class="habitat habitat-b"></span><span class="solar-array"></span><span class="antenna"></span></div>
+          <div class="scene-caption"><span class="live-dot"></span> OUTPOST LIVE VIEW <small>ILLUSTRATIVE SIMULATION</small></div>
+        </div>
+        <div class="scene-info"><div><span class="eyebrow">MISSION ENVIRONMENT</span><b id="sceneDestination">LUNAR SURFACE</b><p id="sceneDescription">Low-gravity world · Dusty terrain · Extreme temperature changes</p></div><button id="newMission" class="ghost-btn" type="button">New mission ↗</button></div>
+      </div>
+
+      <section class="planet-scene" id="planetScene" aria-label="Illustrated space outpost environment">
+        <div class="scene-sky"><span class="scene-star s1"></span><span class="scene-star s2"></span><span class="scene-star s3"></span><span class="scene-earth" id="scenePlanet"></span></div>
+        <div class="scene-horizon"></div><div class="scene-crater crater-one"></div><div class="scene-crater crater-two"></div>
+        <div class="scene-base"><div class="base-dome"></div><div class="base-module"></div><div class="base-window"></div><div class="base-antenna"></div><div class="base-solar"></div></div>
+        <div class="scene-caption"><span class="live-dot"></span><span id="sceneCaption">LUNAR OUTPOST · SYSTEMS ONLINE</span></div>
+      </section>
+      <div class="section-heading"><div><p class="eyebrow">SYSTEM MONITOR</p><h2>Outpost resources</h2></div><span class="muted">Keep every system above critical level</span></div>
+      <div class="resource-grid">
+        <article class="resource-card"><div class="resource-top"><span class="resource-symbol oxygen">O₂</span><span class="resource-status" id="oxygenStatus">STABLE</span></div><h3>Oxygen</h3><div class="resource-value"><strong id="oxygenValue">85</strong><small>%</small></div><div class="meter"><span id="oxygenBar"></span></div><p>Breathing supply</p></article>
+        <article class="resource-card"><div class="resource-top"><span class="resource-symbol water">H₂O</span><span class="resource-status" id="waterStatus">STABLE</span></div><h3>Water</h3><div class="resource-value"><strong id="waterValue">80</strong><small>%</small></div><div class="meter"><span id="waterBar"></span></div><p>Drinking and daily use</p></article>
+        <article class="resource-card"><div class="resource-top"><span class="resource-symbol food">✳</span><span class="resource-status" id="foodStatus">STABLE</span></div><h3>Food</h3><div class="resource-value"><strong id="foodValue">75</strong><small>%</small></div><div class="meter"><span id="foodBar"></span></div><p>Stored food and crops</p></article>
+        <article class="resource-card"><div class="resource-top"><span class="resource-symbol energy">ϟ</span><span class="resource-status" id="energyStatus">STABLE</span></div><h3>Energy</h3><div class="resource-value"><strong id="energyValue">90</strong><small>%</small></div><div class="meter"><span id="energyBar"></span></div><p>Power available</p></article>
+        <article class="resource-card"><div class="resource-top"><span class="resource-symbol shield">⬡</span><span class="resource-status" id="shieldStatus">STABLE</span></div><h3>Radiation shield</h3><div class="resource-value"><strong id="shieldValue">70</strong><small>%</small></div><div class="meter"><span id="shieldBar"></span></div><p>Protection effectiveness</p></article>
+        <article class="resource-card"><div class="resource-top"><span class="resource-symbol health">♡</span><span class="resource-status" id="healthStatus">STABLE</span></div><h3>Crew health</h3><div class="resource-value"><strong id="healthValue">95</strong><small>%</small></div><div class="meter"><span id="healthBar"></span></div><p>Overall crew condition</p></article>
+      </div>
+
+      <div class="main-columns">
+        <section class="panel actions-panel">
+          <div class="section-heading compact"><div><p class="eyebrow">02 / MAKE A DECISION</p><h2>Outpost operations</h2></div></div>
+          <p class="panel-description">Choose an action. Each action has benefits and trade-offs.</p>
+          <div class="action-list">
+            <button class="action-btn" data-action="recycle" type="button"><span class="action-icon blue">♧</span><span><b>Recycle water</b><small>Recover water using the recycling system</small></span><span class="cost">−10 energy</span></button>
+            <button class="action-btn" data-action="grow" type="button"><span class="action-icon green">♣</span><span><b>Grow crops</b><small>Produce food in the habitat greenhouse</small></span><span class="cost">−12 water · −8 energy</span></button>
+            <button class="action-btn" data-action="solar" type="button"><span class="action-icon yellow">☼</span><span><b>Clean solar panels</b><small>Remove dust to improve power collection</small></span><span class="cost">−5 energy</span></button>
+            <button class="action-btn" data-action="shield" type="button"><span class="action-icon purple">⬡</span><span><b>Improve radiation shelter</b><small>Strengthen the crew's protected area</small></span><span class="cost">−15 energy</span></button>
+            <button class="action-btn" data-action="rest" type="button"><span class="action-icon pink">♡</span><span><b>Crew rest period</b><small>Allow the crew to recover</small></span><span class="cost">−5 food</span></button>
+          </div>
+          <button id="nextDay" class="primary-btn full-btn" type="button">END DAY & CONTINUE <span>→</span></button>
+        </section>
+
+        <aside class="side-stack">
+          <section class="panel event-panel">
+            <p class="eyebrow">MISSION CONTROL</p><h2>Mission updates</h2>
+            <div id="eventBox" class="event-box"><span class="event-badge">● SYSTEM READY</span><p>Your outpost is online. Review the resources and choose your first operation.</p></div>
+            <div id="logList" class="log-list" aria-live="polite"><p><time>DAY 01</time> Mission systems initialized.</p></div>
+          </section>
+          <section class="panel score-panel">
+            <p class="eyebrow">MISSION PERFORMANCE</p><div class="score-number"><strong id="scoreValue">100</strong><span>/ 100</span></div><p>Mission readiness score</p><div class="meter score-meter"><span id="scoreBar"></span></div><div class="score-foot"><span>CREW <b id="crewLabel">03</b></span><span>DESTINATION <b id="scoreDestination">MOON</b></span></div>
+          </section>
+        </aside>
+      </div>
+      <section class="panel emergency-panel">
+        <div class="emergency-heading"><div><p class="eyebrow">03 / DECISION LAB</p><h2>Emergency scenario</h2><p>Choose a response and see how it affects your outpost.</p></div><span class="emergency-icon">⚠</span></div>
+        <div class="emergency-card"><div><span id="emergencyTag" class="event-badge">● TRAINING SCENARIO</span><h3 id="emergencyTitle">Solar storm warning</h3><p id="emergencyDescription">A solar activity warning has been detected. Your crew needs to reduce exposure.</p></div>
+          <div id="emergencyChoices" class="emergency-choices">
+            <button class="choice-btn" data-choice="shelter" type="button"><b>Move crew to shelter</b><small>Safer choice · Uses time and supplies</small></button>
+            <button class="choice-btn" data-choice="shield" type="button"><b>Improve shielding</b><small>Uses energy to improve protection</small></button>
+            <button class="choice-btn" data-choice="ignore" type="button"><b>Ignore the warning</b><small>No immediate cost · Higher risk</small></button>
+          </div>
+          <p id="emergencyFeedback" class="emergency-feedback" aria-live="polite">Choose one response to run the scenario.</p>
+          <button id="nextEmergency" class="ghost-btn" type="button">Load another scenario ↻</button>
+        </div>
+      </section>
+      <section class="panel learning-panel"><div><p class="eyebrow">STEM LEARNING</p><h2>Why does this matter?</h2></div><p id="learningText">A space outpost cannot rely on frequent deliveries from Earth. Recycling water reduces the amount of fresh water that must be transported, saving launch mass and mission resources.</p></section>
+      <section class="panel glossary-panel"><div><p class="eyebrow">QUICK LEARNING</p><h2>Space science fact</h2></div><p id="scienceFact">Space habitats need carefully planned life-support systems because resupply missions are limited and costly.</p><button id="nextFact" class="ghost-btn" type="button">Another fact ↗</button></section>
+      <div class="game-footer"><span>OUTPOST ODYSSEY · JUNIOR ASTRONAUT TRAINER</span><button id="resetMission" class="text-btn" type="button">Reset mission</button></div>
+    </section>
+  </main>
+  <div id="emergencyModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="emergencyModalTitle"><div class="modal-card emergency-card"><div class="modal-symbol">⚠</div><p class="eyebrow">MISSION CONTROL / DECISION REQUIRED</p><h2 id="emergencyModalTitle">Mission alert</h2><p id="emergencyModalDescription"></p><div id="emergencyModalChoices" class="emergency-choices"></div><p class="tiny-note">Choose one response. Resource changes are simplified for learning.</p></div></div>
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-card"><div class="modal-symbol">✦</div><p class="eyebrow">MISSION REPORT</p><h2 id="modalTitle">Mission completed</h2><p id="modalText"></p><div class="report-stats"><div><b id="reportDays">1</b><small>Days completed</small></div><div><b id="reportScore">100</b><small>Final score</small></div></div><button id="playAgain" class="primary-btn full-btn" type="button">PLAY AGAIN ↗</button></div></div>
+  <script src="script.js?v=3"></script>
+</body>
+</html>
